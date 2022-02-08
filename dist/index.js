@@ -34,14 +34,14 @@ io.on("connection", function (socket) {
     onlineUsers.push(newUser);
     event_1.default.on("CREATED_MESSAGE", function (message) {
         var onlineUser = onlineUsers.find(function (user) { return user.userId === message.user_id; });
-        if (onlineUsers) {
-            socket.to(onlineUser.userId).emit("CREATED_MESSAGE", message);
+        if (onlineUser) {
+            socket.to(onlineUser.userSocketId).emit("CREATED_MESSAGE", message);
         }
     });
     event_1.default.on("DELETED_MESSAGE", function (message) {
         var onlineUser = onlineUsers.find(function (user) { return user.userId === message.user_id; });
-        if (onlineUsers) {
-            socket.to(onlineUser.userId).emit("DELETED_MESSAGE", message);
+        if (onlineUser) {
+            socket.to(onlineUser.userSocketId).emit("DELETED_MESSAGE", message);
         }
     });
     event_1.default.on("CREATED_USER", function (newUser) {

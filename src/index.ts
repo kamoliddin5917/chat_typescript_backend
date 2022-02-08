@@ -40,8 +40,8 @@ io.on("connection", (socket: Socket): any => {
       (user) => user.userId === message.user_id
     );
 
-    if (onlineUsers) {
-      socket.to(onlineUser.userId).emit("CREATED_MESSAGE", message);
+    if (onlineUser) {
+      socket.to(onlineUser.userSocketId).emit("CREATED_MESSAGE", message);
     }
   });
 
@@ -50,8 +50,8 @@ io.on("connection", (socket: Socket): any => {
       (user) => user.userId === message.user_id
     );
 
-    if (onlineUsers) {
-      socket.to(onlineUser.userId).emit("DELETED_MESSAGE", message);
+    if (onlineUser) {
+      socket.to(onlineUser.userSocketId).emit("DELETED_MESSAGE", message);
     }
   });
 
