@@ -63,7 +63,9 @@ exports.default = {
                     if (!createUser)
                         return [2 /*return*/, res.status(500).json({ message: "SERVER_ERROR_NOT_CREATED!" })];
                     token = jwt_1.default.sign({ userId: createUser.id });
-                    res.status(201).json({ message: "CREATED!", token: token });
+                    res
+                        .status(201)
+                        .json({ message: "CREATED!", data: { token: token, user: createUser } });
                     event_1.default.emit("CREATED_USER", createUser);
                     return [3 /*break*/, 4];
                 case 3:

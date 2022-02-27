@@ -27,7 +27,9 @@ export default {
 
       const token = Token.sign({ userId: createUser.id });
 
-      res.status(201).json({ message: "CREATED!", token });
+      res
+        .status(201)
+        .json({ message: "CREATED!", data: { token, user: createUser } });
 
       ee.emit("CREATED_USER", createUser);
     } catch (error) {
